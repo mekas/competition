@@ -29,12 +29,12 @@ Tuple!(int, int) generate_gcd_pair(int max_step){
     // then we must generate the next gcd by iterating
     // next = high * random + low
     // ex: 2 = 1*1 + 0  
-    auto rnd = Random(seed);
+    Mt19937 rnd = Random(seed);
 
     foreach (i; 0..max_step)
     {
         int rndval = uniform(1, 10, rnd);
-        int next = high*1 + low;
+        int next = high*rndval + low;
         low = high;
         high = next;
     }

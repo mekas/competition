@@ -1,0 +1,12 @@
+{
+    "name": "competition",
+    "authors": "Meson Team",
+    "description": "Test executable",
+    "copyright": "Copyright © 2018, Meson Team",
+    "license": "MIT",
+    "sourceFiles": [
+        "main.d"
+    ],
+    "targetType": "executable",
+    "dependencies": {}
+}

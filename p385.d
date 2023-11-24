@@ -5,13 +5,14 @@ import io;
 import std.random;
 import std.math;
 import std.typecons;
+import std.range;
 
 void main(){
     string path = "../data";
     int[] data = parse_input(path);
     foreach (int val; data)
     {
-        Tuple!(long, long) pair = generate_gcd_pair(val);
+        Tuple!(int, int) pair = generate_gcd_pair(val);
         writef("%d %d ", pair[0], pair[1]);
     }
     writeln();
@@ -33,7 +34,9 @@ Tuple!(int, int) generate_gcd_pair(int max_step){
 
     foreach (i; 0..max_step)
     {
-        int rndval = uniform(1, 10, rnd);
+        int rndval = uniform(1, 100, rnd);
+        //int rndval = rnd.front();
+        //int rndval = [0,1,2,3,4].choice();
         int next = high*rndval + low;
         low = high;
         high = next;

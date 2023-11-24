@@ -18,7 +18,7 @@ void main(){
 
     //validate phase
     int step = validate_gcd(5, 3);
-    writefln("%d", step);
+    //writefln("%d", step);
 }
 
 Tuple!(int, int) generate_gcd_pair(int max_step){
@@ -43,7 +43,7 @@ Tuple!(int, int) generate_gcd_pair(int max_step){
 }
 
 int validate_gcd(long high,long low){
-    writefln("gcd pair: %d %d\n", high, low);
+    //writefln("gcd pair: %d %d\n", high, low);
     if(low == 0)
         return 0;
     else{

@@ -18,7 +18,7 @@ void main(){
     writeln();
 
     //validate phase
-    int step = validate_gcd(5, 3);
+    int step = validate_gcd(9, 7);
     //writefln("%d", step);
 }
 
@@ -34,7 +34,7 @@ Tuple!(int, int) generate_gcd_pair(int max_step){
 
     foreach (i; 0..max_step)
     {
-        int rndval = uniform(1, 100, rnd);
+        int rndval = uniform(1, 10, rnd);
         //int rndval = rnd.front();
         //int rndval = [0,1,2,3,4].choice();
         int next = high*rndval + low;

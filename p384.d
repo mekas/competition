@@ -1,3 +1,5 @@
+module p384;
+
 import std.stdio;
 import std.container;
 import std.typecons;
@@ -18,10 +20,9 @@ Array!(Tuple!(Array!bool, Array!bool)) parse_input(string path){
         file.readf!" %s %s "(v, v2);
         //writefln("%s %s", v, v2);
         //split v to as individual character
-        string[] letter = v.split();
-        auto bletter = stringArrToBoolVector(letter);
-        string[] letter2 = v.split();
-        auto bletter2 = stringArrToBoolVector(letter2);
+        //string[] letter = v.split();
+        Array!bool bletter = stringArrToBoolVector(v);
+        Array!bool bletter2 = stringArrToBoolVector(v2);
         Tuple!(Array!bool, Array!bool) pair;
         pair[0]=bletter;
         pair[1]=bletter2;
@@ -30,10 +31,10 @@ Array!(Tuple!(Array!bool, Array!bool)) parse_input(string path){
     return data;
 }
 
-Array!bool stringArrToBoolVector(string[] data){
+Array!bool stringArrToBoolVector(string data){
     auto boolVector = Array!bool();
-    foreach(string letter; data){
-        if(letter == "1"){
+    for(int i=0;i<data.length;i++){
+        if(data[i] == '1'){
             boolVector.insert(true);
         } else
             boolVector.insert(false);

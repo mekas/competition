@@ -1,6 +1,6 @@
 project('competition', 'd')
 compiler = meson.get_compiler('d')
-sources = ['p343.d'
+sources = ['p384.d'
 ]
 
 

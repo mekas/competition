@@ -2,6 +2,8 @@ module io;
 
 import std.stdio;
 import std.container;
+import std.typecons;
+import std.array;
 
 int[] parse_stdin(){
     int ncase;
@@ -60,6 +62,34 @@ template print(T){
             writeln(val);
         }
     }*/
+}
+
+void print_tuple_values(Array!(Tuple!(Array!bool, Array!bool)) data){
+    //loop outermost Array
+    //writeln(data.length);
+    int i=0;
+    foreach (tup; data)
+    {
+        Array!bool v, v2;
+        v = tup[0];
+        v2 = tup[1];
+        printBoolArray(v);
+        writef(" ");
+        printBoolArray(v2);
+        writefln("");
+        //writeln(i);
+        //i++;
+    }
+}
+
+void printBoolArray(Array!bool arr){
+    foreach(val; arr){
+        if(val == true)
+            write("1");
+        else
+            write("0");
+    }
+    writeln();
 }
 
 

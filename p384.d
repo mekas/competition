@@ -15,7 +15,8 @@ void main(){
 }
 
 void process_vector(Array!(Tuple!(Array!bool, Array!bool)) data){
-    Array!(Array!bool) vectors = generate_bitvectors(-1);
+    ulong len = data.length();
+    Array!(Array!bool) vectors = generate_bitvectors(len);
     printArrayOfBoolArray(vectors);
     foreach (pair; data)
     {
@@ -31,28 +32,29 @@ void printArrayOfBoolArray(Array!(Array!bool) X){
     }
 }
 
-Array!(Array!bool) generate_bitvectors(int len){
+Array!(Array!bool) generate_bitvectors(ulong len){
     Array!(Array!bool) vectors = Array!(Array!bool)();
     bool[] space = [false, true];
+    bool[] bits = new bool[len];
     foreach (bool bit; space)
     {
-        Array!bool current_vector = Array!bool();
-
+        bits[0] = bit;
         // 0
-        current_vector.insertBack(bit);
+        //current_vector.insertBack(bit);
         foreach (bool bit2; space)
         {
             // 00
-            current_vector.insertBack(bit2);
+            //current_vector.insertBack(bit2);
+            bits[1] = bit2;
             foreach (bool bit3; space)
             {
-                current_vector.insertBack(bit3);
+                bits[2] = bit3;
+                Array!bool current_vector = Array!bool(bits);
                 string val = boolArrayToString(current_vector);
                 writeln(val);
                 
                 //vectors.insertBack(current_vector);
             }
-            exit(-1);
         }
     }
     return vectors;

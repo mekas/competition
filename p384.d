@@ -4,10 +4,11 @@ import std.stdio;
 import std.container;
 import std.typecons;
 import std.array;
+import std.string;
 
 void main(){
     string path = "../data";
-    parse_input(path);
+    auto data = parse_input(path);
 }
 
 Array!(Tuple!(Array!bool, Array!bool)) parse_input(string path){
@@ -17,10 +18,11 @@ Array!(Tuple!(Array!bool, Array!bool)) parse_input(string path){
     auto data = Array!(Tuple!(Array!bool, Array!bool))();
     for(int i=0;i<ncase;i++){
         string v, v2;
-        file.readf!" %s %s "(v, v2);
-        //writefln("%s %s", v, v2);
+        //file.readf!" %s %s "(v, v2);
+        string line  = file.readln();
+        //writeln(strip(line));
         //split v to as individual character
-        //string[] letter = v.split();
+        string[] letter = strip(line).split();
         Array!bool bletter = stringArrToBoolVector(v);
         Array!bool bletter2 = stringArrToBoolVector(v2);
         Tuple!(Array!bool, Array!bool) pair;

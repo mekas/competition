@@ -104,3 +104,12 @@ void printBoolArray(Array!bool bits){
     }
     writeln(bitstring);
  } 
+
+ void printArrayOfBoolArray(Array!(Array!bool) X){
+    foreach (x; X)
+    {
+        string val = boolArrayToString(x);
+        //bool[] bits = new bool[len];
+        writeln(val);
+    }
+}

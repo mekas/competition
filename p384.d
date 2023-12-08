@@ -7,6 +7,7 @@ import std.array;
 import std.string;
 import io;
 import core.stdc.stdlib;
+import std.algorithm.sorting;
 
 void main(){
     string path = "../data";
@@ -15,24 +16,44 @@ void main(){
 }
 
 void process_vector(Array!(Tuple!(Array!bool, Array!bool)) data){
-    ulong len = data.length();
-    Array!(Array!bool) vectors = generate_bitvectors(len);
-    printArrayOfBoolArray(vectors);
     foreach (pair; data)
-    {
-        
+    {   
+        ulong len = pair[0].length();
+        bool[] bits = new bool[len];
+        Array!(Array!bool) vectors = Array!(Array!bool)();
+        generate_bitvectors(vectors, bits, len, 0);
+        printArrayOfBoolArray(vectors);
+        //exit(-1);
     }
 }
 
-void printArrayOfBoolArray(Array!(Array!bool) X){
-    foreach (x; X)
-    {
-        string val = boolArrayToString(x);
-        writeln(val);
+/** 
+ * Fully adaptive generate full bitvectors of adaptive size
+ * Params: 
+ *   len = size of passed vector
+ * Returns: Array!(Array!bool) 
+ */
+void generate_bitvectors(ref Array!(Array!bool) vectors, bool[] bits, ulong len, uint pos){
+    if(pos==len){
+        Array!bool current_vector = Array!bool(bits);
+        vectors.insertBack(current_vector);
+    }
+    else{
+        //work only on current digit position
+        bool[] space = [false, true];
+        foreach (bool bit; space)
+        {
+            bits[pos] = bit;
+            generate_bitvectors(vectors, bits, len, pos+1);
+        }
     }
 }
 
-Array!(Array!bool) generate_bitvectors(ulong len){
+/**
+Authors: Me
+This method only works for fixed length of 3
+*/
+Array!(Array!bool) generate_bitvectors_classic(ulong len){
     Array!(Array!bool) vectors = Array!(Array!bool)();
     bool[] space = [false, true];
     bool[] bits = new bool[len];
@@ -50,10 +71,7 @@ Array!(Array!bool) generate_bitvectors(ulong len){
             {
                 bits[2] = bit3;
                 Array!bool current_vector = Array!bool(bits);
-                string val = boolArrayToString(current_vector);
-                writeln(val);
-                
-                //vectors.insertBack(current_vector);
+                vectors.insertBack(current_vector);
             }
         }
     }

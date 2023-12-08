@@ -2,6 +2,7 @@ module io;
 
 import std.stdio;
 import std.container;
+import std.typecons;
 
 int[] parse_stdin(){
     int ncase;
@@ -68,3 +69,38 @@ void copy_array(int[] a, int[] b){
         a[i] = b[i];
     }
 }
+
+void printArrayOfTuple(Array!(Tuple!(Array!bool, Array!bool)) data){
+    foreach (pair; data)
+    {
+        string bits1 = boolArrayToString(pair[0]);
+        string bits2 = boolArrayToString(pair[1]);
+        writefln("%s %s", bits1, bits2);
+    }
+}
+
+string boolArrayToString(Array!bool bits){
+    string bitstring = "";
+
+    foreach (bit; bits)
+    {
+        if(bit == true)
+            bitstring ~= "1";
+        else
+            bitstring ~= "0";
+    }
+    return bitstring;
+}
+
+void printBoolArray(Array!bool bits){
+    string bitstring = "";
+
+    foreach (bit; bits)
+    {
+        if(bit == true)
+            bitstring ~= "1";
+        else
+            bitstring ~= "0";
+    }
+    writeln(bitstring);
+ } 

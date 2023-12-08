@@ -5,33 +5,57 @@ import std.container;
 import std.typecons;
 import std.array;
 import std.string;
+import io;
+import core.stdc.stdlib;
 
 void main(){
     string path = "../data";
     auto data = parse_input(path);
-    printArrayOfTuple(data);
+    process_vector(data);
 }
 
-void printArrayOfTuple(Array!(Tuple!(Array!bool, Array!bool)) data){
+void process_vector(Array!(Tuple!(Array!bool, Array!bool)) data){
+    Array!(Array!bool) vectors = generate_bitvectors(-1);
+    printArrayOfBoolArray(vectors);
     foreach (pair; data)
     {
-        string bits1 = boolArrayToString(pair[0]);
-        string bits2 = boolArrayToString(pair[1]);
-        writefln("%s %s", bits1, bits2);
+        
     }
 }
 
-string boolArrayToString(Array!bool bits){
-    string bitstring = "";
-
-    foreach (bit; bits)
+void printArrayOfBoolArray(Array!(Array!bool) X){
+    foreach (x; X)
     {
-        if(bit == true)
-            bitstring ~= "1";
-        else
-            bitstring ~= "0";
+        string val = boolArrayToString(x);
+        writeln(val);
     }
-    return bitstring;
+}
+
+Array!(Array!bool) generate_bitvectors(int len){
+    Array!(Array!bool) vectors = Array!(Array!bool)();
+    bool[] space = [false, true];
+    foreach (bool bit; space)
+    {
+        Array!bool current_vector = Array!bool();
+
+        // 0
+        current_vector.insertBack(bit);
+        foreach (bool bit2; space)
+        {
+            // 00
+            current_vector.insertBack(bit2);
+            foreach (bool bit3; space)
+            {
+                current_vector.insertBack(bit3);
+                string val = boolArrayToString(current_vector);
+                writeln(val);
+                
+                //vectors.insertBack(current_vector);
+            }
+            exit(-1);
+        }
+    }
+    return vectors;
 }
 
 Array!(Tuple!(Array!bool, Array!bool)) parse_input(string path){

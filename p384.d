@@ -13,6 +13,9 @@ void main(){
     string path = "../data";
     auto data = parse_input(path);
     process_vector(data);
+    //Array!bool bit1 = Array!bool([false, false]);
+    //Array!bool bit2 = Array!bool([true, true]);
+    //Array!bool bit3 = merge(bit1, bit2);
 }
 
 void process_vector(Array!(Tuple!(Array!bool, Array!bool)) data){
@@ -22,7 +25,8 @@ void process_vector(Array!(Tuple!(Array!bool, Array!bool)) data){
         bool[] bits = new bool[len];
         Array!(Array!bool) vectors = Array!(Array!bool)();
         generate_bitvectors(vectors, bits, len, 0);
-        printArrayOfBoolArray(vectors);
+        int num_matched = find_all_matching_hamming(vectors, pair[0], pair[1]);
+        //printArrayOfBoolArray(vectors);
         //exit(-1);
     }
 }
@@ -47,6 +51,15 @@ void generate_bitvectors(ref Array!(Array!bool) vectors, bool[] bits, ulong len,
             generate_bitvectors(vectors, bits, len, pos+1);
         }
     }
+}
+
+int find_all_matching_hamming(Array!(Array!bool) vectors, 
+    Array!bool A, Array!bool B){
+    return -1;
+}
+
+uint hamming_distance(Array!bool x, Array!bool y){
+    return 0;
 }
 
 /**
